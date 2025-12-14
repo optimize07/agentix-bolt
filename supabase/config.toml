@@ -1,0 +1,91 @@
+project_id = "bzldwfwyriwvlyfixmrt"
+
+[functions.gemini-chat]
+verify_jwt = false
+
+[functions.knowledge-base]
+verify_jwt = true
+
+[functions.market-research]
+verify_jwt = true
+
+[functions.search-business]
+verify_jwt = true
+
+[functions.scrape-website-details]
+verify_jwt = true
+
+[functions.scrape-competitor-avatar]
+verify_jwt = true
+
+[functions.sentiment-analysis-run]
+verify_jwt = true
+
+[functions.facebook-connect]
+verify_jwt = true
+
+[functions.google-sheets-connect]
+verify_jwt = true
+
+[functions.ad-spy-scrape]
+verify_jwt = true
+
+[functions.ad-spy-recreate]
+verify_jwt = true
+
+[functions.metaads-publish]
+verify_jwt = true
+
+[functions.sheets-export]
+verify_jwt = true
+
+[functions.composio-manage-connection]
+verify_jwt = false
+
+[functions.drive-list]
+verify_jwt = true
+
+[functions.metaads-list]
+verify_jwt = true
+
+[functions.n8n-connect]
+verify_jwt = true
+
+[functions.n8n-connections]
+verify_jwt = true
+
+[functions.n8n-execution-status]
+verify_jwt = true
+
+[functions.n8n-list]
+verify_jwt = true
+
+[functions.n8n-run]
+verify_jwt = true
+
+[functions.generate-copy]
+verify_jwt = true
+
+[functions.generate-ad-images]
+verify_jwt = true
+
+[functions.scrape-url-content]
+verify_jwt = true
+
+[functions.rag-indexing]
+verify_jwt = false
+
+[functions.google-search-indexing]
+verify_jwt = false
+
+[functions.import-central-brain-data]
+verify_jwt = false
+
+[functions.export-central-brain-data]
+verify_jwt = false
+
+[functions.batch-generate-images]
+verify_jwt = false
+
+[functions.chat]
+verify_jwt = false

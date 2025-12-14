@@ -1,0 +1,279 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Dark, minimal scrollbars for overflow areas */
+.scroll-dark{
+  scrollbar-width: thin;
+  scrollbar-color: rgb(63 63 70) transparent; /* zinc-700 on transparent */
+}
+.scroll-dark::-webkit-scrollbar{
+  width: 8px;
+  height: 8px;
+}
+.scroll-dark::-webkit-scrollbar-track{
+  background: transparent;
+}
+.scroll-dark::-webkit-scrollbar-thumb{
+  background: rgb(63 63 70);
+  border-radius: 9999px;
+}
+.scroll-dark:hover::-webkit-scrollbar-thumb{
+  background: rgb(82 82 91);
+}
+
+/* 
+  AGENTICS HUB - BRANDING GUIDELINES
+  ===================================
+
+  Product Name: Agentics Hub
+  Platform Type: Minimal product platform, create chat style
+
+  VISUAL STYLE GUIDELINES:
+  - Theme: Dark Mode (default)
+  - Primary color: #090a0e (Background)
+  - Accent color: #134736 (Brand accent)
+  - Spacing: 20px padding maintained for alignment and segregation
+  - Borders: 1px solid Dark Grey (#A9A9A9)
+  - Typography: Clean sans-serif, base 16px, variable font-weight
+  - Icons: Minimalist white icons on dark background for easy identification
+
+  THEME COMPATIBILITY RULE:
+  All UI components MUST use CSS custom properties (var(--*)) for colors, 
+  backgrounds, borders, and shadows to ensure theme compatibility.
+  Hardcoded color values will break theming!
+
+  All colors MUST be in HSL format for proper theme integration.
+*/
+
+@layer base {
+  :root {
+    /* PRIMARY BRAND COLORS */
+    --background: 228 22% 4.5000%;              /* #090a0e - Primary dark background */
+    --foreground: 216 12.1951% 83.9216%;                /* Near white text for maximum contrast */
+
+    /* CARD COMPONENTS */
+    --card: 228 25% 8%;                       /* Slightly lighter than background for depth */
+    --card-foreground: 216 12.1951% 83.9216%;           /* White text on cards */
+
+    /* POPOVER/DROPDOWN ELEMENTS */
+    --popover: 228 25% 8%;                    /* Matches card background */
+    --popover-foreground: 0 0% 100%;        /* White text for readability */
+
+    /* ACCENT COLOR (Brand Green) */
+    --primary: 160 58.0000% 18%;                /* #134736 - Brand accent color */
+    --primary-foreground: 214 31.8182% 91.3725%;        /* White text on accent */
+
+    /* SECONDARY ELEMENTS */
+    --secondary: 112 63% 24.5000%;                 /* Slightly lighter for secondary actions */
+    --secondary-foreground: 216 12.1951% 83.9216%;      /* White text */
+
+    /* MUTED/DISABLED STATES */
+    --muted: 228 15% 18%;                     /* Muted background */
+    --muted-foreground: 215 20.2247% 65.098%;          /* #A9A9A9 - Dark grey for muted text */
+
+    /* ACCENT ALTERNATIVE */
+    --accent: 160 56.0000% 23.3000%;                 /* Matches primary accent */
+    --accent-foreground: 0 0% 100%;         /* White text */
+
+    /* DESTRUCTIVE/ERROR STATES */
+    --destructive: 0 84% 60%;          /* Red for errors */
+    --destructive-foreground: 0 0% 100%;    /* White text */
+
+    /* BORDERS & INPUTS */
+    --border: 215 27.907% 16.8627%;                    /* #A9A9A9 - Dark grey borders (1px solid) */
+    --input: 215 27.907% 16.8627%;                     /* Input field background */
+    --ring: 160 58.0000% 18%;                   /* Focus ring matches brand accent */
+
+    /* BORDER RADIUS */
+    --radius: 0.75rem;                      /* Consistent rounded corners */
+
+    /* SIDEBAR SPECIFIC */
+    --sidebar-background: 0 0% 5%;         /* Slightly darker for sidebar depth */
+    --sidebar-foreground: 265 4% 12.9%;        /* White text */
+    --sidebar-primary: 266 4% 20.8%;        /* Brand accent in sidebar */
+    --sidebar-primary-foreground: 248 0.3% 98.4%;
+    --sidebar-accent: 248 0.7% 96.8%;            /* Hover states in sidebar */
+    --sidebar-accent-foreground: 266 4% 20.8%;
+    --sidebar-border: 256 1.3% 92.9%;            /* Subtle sidebar separators */
+    --sidebar-ring: 257 4% 70.4%;           /* Focus ring in sidebar */
+
+    /* CUSTOM DESIGN TOKENS */
+    --spacing: 0.25rem;                       /* Standard spacing unit (20px padding) */
+
+    /* =========================================
+       THEME BUILDER CSS CUSTOM PROPERTIES
+       =========================================
+       These variables are dynamically updated by the ThemeContext.
+       They provide real-time theme customization across the app.
+    */
+
+    /* PAGE BACKGROUND - Used for body/page background */
+    --page-bg: hsl(var(--background));
+
+    /* CARD STYLING */
+    --card-bg: #131620;                    /* Card background color/gradient */
+    --card-border: rgba(64, 64, 64, 1);    /* Card border color with opacity */
+    --card-border-width: 1px;              /* Card border width */
+    --card-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.2); /* Card box-shadow */
+
+    /* BUTTON STYLING */
+    --button-bg: #134736;                  /* Button background color/gradient */
+    --button-hover: #1d7a62;               /* Button hover state */
+    --button-active: #0f3a2b;              /* Button active/pressed state */
+    --button-text: #ffffff;                /* Button text color */
+
+    /* SIDEBAR STYLING */
+    --sidebar-bg: #0a0c10;                 /* Sidebar background color/gradient */
+    --sidebar-text: #ffffff;               /* Sidebar text color */
+    --sidebar-active-bg: #134736;          /* Active nav item background */
+    --sidebar-active-text: #ffffff;        /* Active nav item text */
+    --sidebar-hover-bg: #1a1d28;           /* Hover nav item background */
+
+    /* TAB BAR STYLING */
+    --tab-bar-bg: #0a0c10;                 /* Tab bar background */
+    --tab-active-bg: #134736;              /* Active tab background */
+    --tab-active-text: #ffffff;            /* Active tab text */
+    --tab-active-border: #134736;          /* Active tab border/underline */
+    --tab-inactive-text: #a1a1aa;          /* Inactive tab text */
+    --tab-hover-bg: #1a1d24;               /* Tab hover background */
+
+    /* GLASS EFFECT */
+    --glass-blur: 16px;                    /* Glass blur amount */
+    --glass-bg-opacity: 0.15;              /* Glass background opacity */
+    --glass-chrome-intensity: 0;           /* Chrome texture intensity */
+    --glass-tint: rgba(0, 0, 0, 0.05);     /* Glass tint color */
+
+    /* STATUS COLORS */
+    --status-success: 142 71% 45%;         /* Success state color */
+    --status-success-foreground: 0 0% 100%;
+    --status-warning: 38 92% 50%;          /* Warning state color */
+    --status-warning-foreground: 0 0% 100%;
+    --status-error: 0 72% 51%;             /* Error state color */
+    --status-error-foreground: 0 0% 100%;
+    --status-info: 217 91% 60%;            /* Info state color */
+    --status-info-foreground: 0 0% 100%;
+
+    /* DIVIDERS */
+    --divider-color: rgba(64, 64, 64, 1);  /* Divider/separator color */
+    --divider-width: 1px;                  /* Divider thickness */
+    --divider-style: solid;                /* Divider style: solid/dashed/dotted */                --chart-1: 160 58.0000% 18%;                --chart-2: 112 63% 24.5000%;                --chart-3: 160 56.0000% 23.3000%;                --chart-4: 185 12% 60%;                --chart-5: 223 35% 88%;                --sidebar: 248 0.3% 98.4%;                --font-sans: Inter, ui-sans-serif, system-ui, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;                --font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;                --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;                --shadow-2xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);                --shadow-xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);                --shadow-sm: 0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 1px 2px -1px hsl(0 0% 0% / 0.1);                --shadow: 0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 1px 2px -1px hsl(0 0% 0% / 0.1);                --shadow-md: 0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 2px 4px -1px hsl(0 0% 0% / 0.1);                --shadow-lg: 0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 4px 6px -1px hsl(0 0% 0% / 0.1);                --shadow-xl: 0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 8px 10px -1px hsl(0 0% 0% / 0.1);                --shadow-2xl: 0 1px 3px 0px hsl(0 0% 0% / 0.25);                --tracking-normal: 0em;
+  }
+
+  /* LIGHT MODE THEME DEFAULTS */
+  .light {
+    --background: 0 0% 100%;
+    --foreground: 228 22% 8%;
+    --card: 0 0% 100%;
+    --card-foreground: 228 22% 8%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 228 22% 8%;
+    --primary: 161 61% 32%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 144 48% 39%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 16% 47%;
+    --accent: 161 61% 40%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 161 61% 32%;
+    --sidebar-background: 210 40% 98%;
+    --sidebar-foreground: 228 22% 8%;
+    --sidebar-primary: 161 61% 32%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 210 40% 96%;
+    --sidebar-accent-foreground: 228 22% 8%;
+    --sidebar-border: 214 32% 91%;
+    --sidebar-ring: 161 61% 32%;
+
+    /* Light mode theme builder properties */
+    --page-bg: hsl(var(--background));
+    --card-bg: #ffffff;
+    --card-border: rgba(226, 232, 240, 1);
+    --card-border-width: 1px;
+    --card-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.05);
+    --button-bg: #20856a;
+    --button-hover: #28a882;
+    --button-active: #175c4c;
+    --button-text: #ffffff;
+    --sidebar-bg: #f8faf9;
+    --sidebar-text: #090a0e;
+    --sidebar-active-bg: #20856a;
+    --sidebar-active-text: #ffffff;
+    --sidebar-hover-bg: #e8f0ed;
+    --tab-bar-bg: #f8fafc;
+    --tab-active-bg: #20856a;
+    --tab-active-text: #ffffff;
+    --tab-active-border: #20856a;
+    --tab-inactive-text: #64748b;
+    --tab-hover-bg: #f1f5f9;
+    --glass-blur: 12px;
+    --glass-bg-opacity: 0.1;
+    --glass-chrome-intensity: 0;
+    --glass-tint: rgba(255, 255, 255, 0.05);
+    --divider-color: rgba(229, 231, 235, 1);
+    --divider-width: 1px;
+    --divider-style: solid;
+  }
+  .dark {
+    --background: 228 22% 4.5000%;
+    --foreground: 0 0% 100%;
+    --card: 228 25% 8%;
+    --card-foreground: 0 0% 100%;
+    --popover: 228 25% 8%;
+    --popover-foreground: 0 0% 100%;
+    --primary: 160 58.0000% 18%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 112 63% 24.5000%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 228 15% 18%;
+    --muted-foreground: 0 0% 80%;
+    --accent: 160 56.0000% 23.3000%;
+    --accent-foreground: 0 0% 100%;
+    --border: 0 0% 25%;
+    --input: 0 0% 25%;
+    --ring: 160 58.0000% 18%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --chart-1: 160 58.0000% 18%;
+    --chart-2: 112 63% 24.5000%;
+    --chart-3: 160 56.0000% 23.3000%;
+    --chart-4: 185 12% 60%;
+    --chart-5: 223 35% 88%;
+    --sidebar: 266 4% 20.8%;
+    --sidebar-foreground: 248 0.3% 98.4%;
+    --sidebar-primary: 264 24.3% 48.8%;
+    --sidebar-primary-foreground: 248 0.3% 98.4%;
+    --sidebar-accent: 260 4.1% 27.9%;
+    --sidebar-accent-foreground: 248 0.3% 98.4%;
+    --sidebar-border: 0 0% 100% / 10%;
+    --sidebar-ring: 264 2.7% 55.1%;
+    --radius: 0.75rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    background: var(--page-bg, hsl(var(--background)));
+    @apply text-foreground;
+  }
+}
+
+/* Hide scrollbar while maintaining scroll functionality */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}

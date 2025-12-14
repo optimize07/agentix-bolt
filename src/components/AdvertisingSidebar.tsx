@@ -1,0 +1,149 @@
+import { NavLink, useNavigate, useParams } from "react-router-dom";
+import { Button } from "@/components/ui/button";
+import {
+  LayoutDashboard,
+  LineChart,
+  FolderKanban,
+  Wand2,
+  Brain,
+  Target,
+  Eye,
+  TrendingUp,
+  BarChart3,
+  ArrowLeft,
+  Megaphone,
+} from "lucide-react";
+import { useSidebarToggle } from "@/hooks/use-sidebar-toggle";
+import { SidebarUserPanel } from "@/components/SidebarUserPanel";
+
+export const AdvertisingSidebar = () => {
+  const navigate = useNavigate();
+  const { clientId } = useParams();
+  const { isOpen } = useSidebarToggle();
+
+  const navigationSections = [
+    {
+      label: "MAIN DASHBOARD",
+      items: [
+        { title: "Overview", path: `/client/${clientId}/advertising`, icon: LayoutDashboard },
+        { title: "Analytics", path: `/client/${clientId}/advertising/analytics`, icon: LineChart },
+      ],
+    },
+    {
+      label: "STUDIO",
+      items: [
+        { title: "Projects", path: `/client/${clientId}/advertising/projects`, icon: FolderKanban },
+        { title: "Ad Agents", path: `/client/${clientId}/advertising/agents`, icon: Wand2 },
+      ],
+    },
+    {
+      label: "AD LAUNCHER",
+      items: [
+        { title: "Ad Creator", path: `/client/${clientId}/advertising/ad-creator`, icon: Wand2 },
+        { title: "AI CMO", path: `/client/${clientId}/advertising/ai-cmo`, icon: Brain },
+        { title: "Campaign Manager", path: `/client/${clientId}/advertising/campaign-manager`, icon: Target },
+      ],
+    },
+    {
+      label: "AD RESEARCH",
+      items: [
+        { title: "Ad Spy", path: `/client/${clientId}/advertising/ad-spy`, icon: Eye },
+        { title: "Ad Optimizer", path: `/client/${clientId}/advertising/ad-optimizer`, icon: BarChart3 },
+        { title: "Market Research", path: `/client/${clientId}/advertising/market-research`, icon: TrendingUp },
+      ],
+    },
+    {
+      label: "RESOURCES",
+      items: [
+        { title: "Central Brain", path: `/client/${clientId}/central-brain`, icon: Brain },
+      ],
+    },
+  ];
+
+  return (
+    <aside 
+      className={`${isOpen ? "flex" : "hidden"} h-screen min-w-64 w-64 flex-col shrink-0`}
+      style={{
+        background: 'var(--sidebar-bg)',
+        borderRight: '1px solid var(--divider-color)',
+        color: 'var(--sidebar-text)',
+      }}
+    >
+      {/* Header */}
+      <div 
+        className="p-6"
+        style={{ borderBottom: '1px solid var(--divider-color)' }}
+      >
+        <div className="flex items-center gap-3">
+          <div 
+            className="flex h-10 w-10 items-center justify-center rounded-lg shrink-0"
+            style={{ background: 'var(--sidebar-active-bg)' }}
+          >
+            <Megaphone className="h-5 w-5" style={{ color: 'var(--sidebar-active-text)' }} />
+          </div>
+          <h1 className="text-xl font-bold whitespace-nowrap" style={{ color: 'var(--sidebar-text)' }}>Advertising</h1>
+        </div>
+      </div>
+
+      {/* Back to Client Dashboard */}
+      <div className="px-4 pt-4 relative z-0">
+        <Button
+          variant="outline"
+          onClick={() => navigate(`/client/${clientId}`)}
+          className="w-full justify-start gap-2"
+        >
+          <ArrowLeft className="h-4 w-4 shrink-0" />
+          <span className="truncate">Client Dashboard</span>
+        </Button>
+      </div>
+
+      {/* Navigation Menu */}
+      <nav className="flex-1 overflow-y-auto px-4 py-6 scrollbar-hide relative z-10">
+        <div className="space-y-4">
+          {navigationSections.map((section) => (
+            <div key={section.label} className="space-y-1">
+              <div 
+                className="px-3 py-2 text-xs font-semibold"
+                style={{ color: 'var(--sidebar-text)', opacity: 0.6 }}
+              >
+                {section.label}
+              </div>
+              <div className="space-y-1">
+                {section.items.map((item) => (
+                  <NavLink
+                    key={item.path}
+                    to={item.path}
+                    end={item.path === `/client/${clientId}/advertising`}
+                    className="flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium transition-colors"
+                    style={({ isActive }) => ({
+                      background: isActive ? 'var(--sidebar-active-bg)' : 'transparent',
+                      color: isActive ? 'var(--sidebar-active-text)' : 'var(--sidebar-text)',
+                    })}
+                    onMouseEnter={(e) => {
+                      const isActive = e.currentTarget.getAttribute('aria-current') === 'page';
+                      if (!isActive) {
+                        e.currentTarget.style.background = 'var(--sidebar-hover-bg)';
+                      }
+                    }}
+                    onMouseLeave={(e) => {
+                      const isActive = e.currentTarget.getAttribute('aria-current') === 'page';
+                      if (!isActive) {
+                        e.currentTarget.style.background = 'transparent';
+                      }
+                    }}
+                  >
+                    <item.icon className="h-4 w-4 shrink-0" />
+                    <span className="truncate">{item.title}</span>
+                  </NavLink>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </nav>
+
+      {/* User Profile Panel */}
+      <SidebarUserPanel />
+    </aside>
+  );
+};
