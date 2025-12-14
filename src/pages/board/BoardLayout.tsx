@@ -88,12 +88,8 @@ export default function BoardLayout() {
               Chat
             </TabsTrigger>
             <TabsTrigger value="canvas" className="gap-2">
-              <PenTool className="w-4 h-4" />
-              Canvas
-            </TabsTrigger>
-            <TabsTrigger value="canvas2" className="gap-2">
               <Sparkles className="w-4 h-4" />
-              Canvas 2
+              Canvas
             </TabsTrigger>
             <TabsTrigger value="kanban" className="gap-2">
               <Columns3 className="w-4 h-4" />

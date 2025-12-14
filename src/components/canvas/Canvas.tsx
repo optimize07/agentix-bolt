@@ -618,15 +618,20 @@ const CanvasInner: React.FC<CanvasProps> = ({ projectId }) => {
         fitView
         snapToGrid
         snapGrid={[16, 16]}
+        panOnScroll
         panOnDrag={[1, 2]}
-        selectionOnDrag={true}
-        nodesDraggable={true}
+        zoomOnScroll={true}
+        zoomOnPinch={true}
+        selectionKeyCode="Shift"
+        multiSelectionKeyCode="Shift"
+        deleteKeyCode="Delete"
         defaultEdgeOptions={{
           type: 'default',
           style: { stroke: 'hsl(var(--border))', strokeWidth: 2 },
         }}
         proOptions={{ hideAttribution: true }}
         className="bg-background"
+        colorMode="dark"
       >
         <Background color="hsl(var(--border))" gap={24} size={1} />
         <Controls className="bg-background border border-border rounded-lg" />
