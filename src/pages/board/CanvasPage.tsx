@@ -1,16 +1,16 @@
 import { useParams } from "react-router-dom";
-import { Canvas2 } from "@/components/canvas";
+import { Canvas } from "@/components/canvas";
 
-export default function Canvas2Page() {
+export default function CanvasPage() {
   const { boardId } = useParams();
 
   if (!boardId) {
     return (
       <div className="flex items-center justify-center h-full">
-        <p className="text-muted-foreground">Please select a project</p>
+        <p className="text-muted-foreground">No board selected</p>
       </div>
     );
   }
 
-  return <Canvas2 projectId={boardId} />;
+  return <Canvas projectId={boardId} />;
 }

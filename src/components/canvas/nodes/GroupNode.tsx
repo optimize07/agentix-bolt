@@ -38,7 +38,7 @@ const GroupNode: React.FC<NodeProps> = ({ data, selected }) => {
   const [isExpanded, setIsExpanded] = useState(true);
   const [color, setColor] = useState(nodeData.color || GROUP_COLORS[0].value);
 
-  // Get child blocks from nodeData (passed from Canvas2)
+  // Get child blocks from nodeData (passed from Canvas)
   const childBlocks = useMemo(() => nodeData.childBlocks || [], [nodeData.childBlocks]);
   const childCount = childBlocks.length;
 

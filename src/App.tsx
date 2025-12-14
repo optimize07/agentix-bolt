@@ -85,7 +85,6 @@ import Launch from "./pages/Launch";
 
 import BoardLayout from "./pages/board/BoardLayout";
 import BoardChat from "./pages/board/Chat";
-import BoardCanvas from "./pages/board/Canvas";
 import BoardKanban from "./pages/board/Kanban";
 import BoardSettings from "./pages/board/Settings";
 import AdvertisingBoardPage from "./pages/AdvertisingBoardPage";
@@ -95,7 +94,7 @@ const queryClient = new QueryClient();
 const ClientAnalytics = lazy(() => import("./pages/ClientAnalytics"));
 const AdminDashboard = lazy(() => import("./pages/AdminDashboard"));
 const AdminReports = lazy(() => import("./pages/AdminReports"));
-const BoardCanvas2 = lazy(() => import("./pages/board/Canvas2Page"));
+const CanvasPage = lazy(() => import("./pages/board/CanvasPage"));
 const AdminCalendar = lazy(() => import("./pages/AdminCalendar"));
 
 const App = () => (
@@ -146,12 +145,11 @@ const App = () => (
           <Route path="/client/:clientId/advertising/projects/:boardId" element={<ProtectedRoute><AdvertisingBoardPage /></ProtectedRoute>}>
             <Route index element={<Navigate to="chat" replace />} />
             <Route path="chat" element={<BoardChat />} />
-            <Route path="canvas" element={<BoardCanvas />} />
             <Route
-              path="canvas2"
+              path="canvas"
               element={
                 <Suspense fallback={<div className="p-4 text-muted-foreground">Loading canvas...</div>}>
-                  <BoardCanvas2 />
+                  <CanvasPage />
                 </Suspense>
               }
             />
@@ -204,12 +202,11 @@ const App = () => (
           <Route path="/client/:clientId/marketing/projects/:boardId" element={<ProtectedRoute><MarketingBoardPage /></ProtectedRoute>}>
             <Route index element={<Navigate to="chat" replace />} />
             <Route path="chat" element={<BoardChat />} />
-            <Route path="canvas" element={<BoardCanvas />} />
             <Route
-              path="canvas2"
+              path="canvas"
               element={
                 <Suspense fallback={<div className="p-4 text-muted-foreground">Loading canvas...</div>}>
-                  <BoardCanvas2 />
+                  <CanvasPage />
                 </Suspense>
               }
             />
@@ -237,12 +234,11 @@ const App = () => (
           <Route path="/projects/:boardId" element={<ProtectedRoute><BoardLayout /></ProtectedRoute>}>
             <Route index element={<Navigate to="chat" replace />} />
             <Route path="chat" element={<BoardChat />} />
-            <Route path="canvas" element={<BoardCanvas />} />
             <Route
-              path="canvas2"
+              path="canvas"
               element={
                 <Suspense fallback={<div className="p-4 text-muted-foreground">Loading canvas...</div>}>
-                  <BoardCanvas2 />
+                  <CanvasPage />
                 </Suspense>
               }
             />
@@ -253,12 +249,11 @@ const App = () => (
           <Route path="/client/:clientId/projects/:boardId" element={<ProtectedRoute><BoardLayout /></ProtectedRoute>}>
             <Route index element={<Navigate to="chat" replace />} />
             <Route path="chat" element={<BoardChat />} />
-            <Route path="canvas" element={<BoardCanvas />} />
             <Route
-              path="canvas2"
+              path="canvas"
               element={
                 <Suspense fallback={<div className="p-4 text-muted-foreground">Loading canvas...</div>}>
-                  <BoardCanvas2 />
+                  <CanvasPage />
                 </Suspense>
               }
             />

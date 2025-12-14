@@ -29,16 +29,16 @@ import { CanvasBlock, CanvasBlockType, blockToNode, edgeToReactFlowEdge } from '
 import { supabase } from '@/integrations/supabase/client';
 import { toast } from 'sonner';
 
-interface Canvas2Props {
+interface CanvasProps {
   projectId: string;
 }
 
 type CanvasNode = Node<any>;
 
-const Canvas2Inner: React.FC<Canvas2Props> = ({ projectId }) => {
+const CanvasInner: React.FC<CanvasProps> = ({ projectId }) => {
   const reactFlowInstance = useReactFlow();
   const reactFlowWrapper = useRef<HTMLDivElement>(null);
-  
+
   const [brainPanelOpen, setBrainPanelOpen] = useState(false);
   const [selectedCount, setSelectedCount] = useState(0);
 
@@ -56,7 +56,7 @@ const Canvas2Inner: React.FC<Canvas2Props> = ({ projectId }) => {
   const updateBlockRef = useRef(updateBlock);
   const deleteBlockRef = useRef(deleteBlock);
   const createBlockRef = useRef(createBlock);
-  
+
   useEffect(() => {
     updateBlockRef.current = updateBlock;
     deleteBlockRef.current = deleteBlock;
@@ -75,9 +75,9 @@ const Canvas2Inner: React.FC<Canvas2Props> = ({ projectId }) => {
     const incomingEdgeIds = dbEdges
       .filter(e => e.target_block_id === targetId)
       .map(e => e.source_block_id);
-    
+
     const connectedBlocks = blocks.filter(b => incomingEdgeIds.includes(b.id));
-    
+
     // Expand group nodes to include their connected children
     const expandedBlocks: CanvasBlock[] = [];
     for (const block of connectedBlocks) {
@@ -91,7 +91,7 @@ const Canvas2Inner: React.FC<Canvas2Props> = ({ projectId }) => {
       }
       expandedBlocks.push(block);
     }
-    
+
     return expandedBlocks;
   }, [blocks, dbEdges]);
 
@@ -147,7 +147,7 @@ const Canvas2Inner: React.FC<Canvas2Props> = ({ projectId }) => {
     // Parse content type to determine where to put the content
     const lowerType = contentType.toLowerCase();
     const metadata: Record<string, any> = { status: 'draft' };
-    
+
     if (lowerType.includes('headline') || lowerType.includes('hook')) {
       metadata.headline = content;
     } else if (lowerType.includes('cta') || lowerType.includes('call to action')) {
@@ -168,7 +168,7 @@ const Canvas2Inner: React.FC<Canvas2Props> = ({ projectId }) => {
         title: `Creative - ${contentType}`,
         metadata,
       });
-      
+
       toast.success(`Created creative from ${contentType}`);
     } catch (err) {
       toast.error('Failed to create creative');
@@ -179,10 +179,10 @@ const Canvas2Inner: React.FC<Canvas2Props> = ({ projectId }) => {
   const initialNodes = useMemo((): CanvasNode[] => {
     return blocks.map(block => {
       const node = blockToNode(block);
-      
+
       // Get child blocks for group nodes
       const childBlocks = block.type === 'group' ? getGroupChildren(block.id) : undefined;
-      
+
       return {
         ...node,
         data: {
@@ -195,7 +195,7 @@ const Canvas2Inner: React.FC<Canvas2Props> = ({ projectId }) => {
           },
           // GroupNode specific props
           childBlocks,
-          onRemoveChild: block.type === 'group' 
+          onRemoveChild: block.type === 'group'
             ? (childId: string) => handleRemoveFromGroup(childId, block.id)
             : undefined,
           onContentChange: (content: string) => updateBlockRef.current.mutate({ id: block.id, content }),
@@ -203,7 +203,7 @@ const Canvas2Inner: React.FC<Canvas2Props> = ({ projectId }) => {
           onInstructionChange: (instruction: string) => updateBlockRef.current.mutate({ id: block.id, instruction_prompt: instruction }),
           onDelete: () => handleDeleteNode(block.id),
           onResize: (width: number, height: number) => updateBlockRef.current.mutate({ id: block.id, width, height }),
-          onPushToCreative: block.type === 'chat' 
+          onPushToCreative: block.type === 'chat'
             ? (content: string, contentType: string) => handlePushToCreative(block.id, content, contentType)
             : undefined,
         },
@@ -235,12 +235,12 @@ const Canvas2Inner: React.FC<Canvas2Props> = ({ projectId }) => {
   }, [nodes]);
 
   // History for undo/redo
-  const { 
-    pushState, 
-    undo, 
-    redo, 
-    canUndo, 
-    canRedo 
+  const {
+    pushState,
+    undo,
+    redo,
+    canUndo,
+    canRedo
   } = useCanvasHistory();
 
   // Handle undo
@@ -264,7 +264,7 @@ const Canvas2Inner: React.FC<Canvas2Props> = ({ projectId }) => {
   // Handle node changes (position, selection, etc.)
   const onNodesChange = useCallback((changes: NodeChange[]) => {
     setNodes(nds => applyNodeChanges(changes, nds) as CanvasNode[]);
-    
+
     // Save position changes to database (debounced)
     const positionChanges = changes.filter(c => c.type === 'position' && (c as any).position && (c as any).dragging === false);
     if (positionChanges.length > 0) {
@@ -292,7 +292,7 @@ const Canvas2Inner: React.FC<Canvas2Props> = ({ projectId }) => {
         source_block_id: connection.source,
         target_block_id: connection.target,
       });
-      
+
       pushState(nodes, edges);
     } catch (err) {
       toast.error('Failed to create connection');
@@ -350,7 +350,7 @@ const Canvas2Inner: React.FC<Canvas2Props> = ({ projectId }) => {
   // Handle drop from Central Brain panel
   const onDrop = useCallback(async (event: React.DragEvent) => {
     event.preventDefault();
-    
+
     // Check for block type drag from toolbar
     const blockType = event.dataTransfer.getData('application/block-type');
     if (blockType) {
@@ -364,7 +364,7 @@ const Canvas2Inner: React.FC<Canvas2Props> = ({ projectId }) => {
       }
       return;
     }
-    
+
     // Check for brain drop
     const brainDrop = event.dataTransfer.getData('application/brain-drop');
     if (brainDrop) {
@@ -378,7 +378,7 @@ const Canvas2Inner: React.FC<Canvas2Props> = ({ projectId }) => {
       }
       return;
     }
-    
+
     // Check for JSON data from Central Brain panel
     const data = event.dataTransfer.getData('application/json');
     if (!data) return;
@@ -515,7 +515,7 @@ const Canvas2Inner: React.FC<Canvas2Props> = ({ projectId }) => {
     if (!text) return;
 
     e.preventDefault();
-    
+
     // Detect if it's a URL
     const urlPattern = /^https?:\/\/[^\s]+$/;
     if (urlPattern.test(text.trim())) {
@@ -627,7 +627,7 @@ const Canvas2Inner: React.FC<Canvas2Props> = ({ projectId }) => {
       >
         <Background color="hsl(var(--border))" gap={24} size={1} />
         <Controls className="bg-background border border-border rounded-lg" />
-        <MiniMap 
+        <MiniMap
           className="bg-background border border-border rounded-lg"
           nodeColor="hsl(var(--primary))"
           maskColor="hsl(var(--background) / 0.8)"
@@ -660,10 +660,10 @@ const Canvas2Inner: React.FC<Canvas2Props> = ({ projectId }) => {
 };
 
 // Wrap with ReactFlowProvider
-const Canvas2: React.FC<Canvas2Props> = (props) => (
+const Canvas: React.FC<CanvasProps> = (props) => (
   <ReactFlowProvider>
-    <Canvas2Inner {...props} />
+    <CanvasInner {...props} />
   </ReactFlowProvider>
 );
 
-export default Canvas2;
+export default Canvas;

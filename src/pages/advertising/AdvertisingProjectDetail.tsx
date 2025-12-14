@@ -67,8 +67,7 @@ import { listAgentConfigs, AgentConfig } from "@/integrations/n8n/agents";
 import { UniversalAgentRunner } from "@/components/agents/UniversalAgentRunner";
 import { AgentChatWindow } from "@/components/agents/AgentChatWindow";
 import { ProjectCanvas } from "@/components/projects/ProjectCanvas";
-import BoardCanvas from "@/pages/board/Canvas";
-import { Canvas2 } from "@/components/canvas";
+import { Canvas } from "@/components/canvas";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import {
@@ -161,7 +160,7 @@ export default function AdvertisingProjectDetail() {
   const [project, setProject] = useState<ProjectWithDetails | null>(null);
   const [statuses, setStatuses] = useState<ProjectAssetStatus[]>([]);
   const [loading, setLoading] = useState(true);
-  const [activeTab, setActiveTab] = useState("canvas2");
+  const [activeTab, setActiveTab] = useState("canvas");
   const [availableProjects, setAvailableProjects] = useState<Project[]>([]);
   const [projectsLoading, setProjectsLoading] = useState(false);
 
@@ -600,12 +599,8 @@ export default function AdvertisingProjectDetail() {
                 Chat
               </TabsTrigger>
               <TabsTrigger value="canvas" className="gap-2">
-                <Layout className="h-4 w-4" />
-                Canvas
-              </TabsTrigger>
-              <TabsTrigger value="canvas2" className="gap-2">
                 <Sparkles className="h-4 w-4" />
-                Canvas 2
+                Canvas
               </TabsTrigger>
               <TabsTrigger value="kanban" className="gap-2">
                 <Columns3 className="h-4 w-4" />
@@ -934,17 +929,10 @@ export default function AdvertisingProjectDetail() {
               </div>
             )}
 
-            {/* Canvas Tab (Original Board Canvas) */}
-            {activeTab === "canvas" && (
+            {/* Canvas Tab (ReactFlow-based node canvas) */}
+            {activeTab === "canvas" && projectId && (
               <div className="h-full">
-                <BoardCanvas />
-              </div>
-            )}
-
-            {/* Canvas 2 Tab (ReactFlow-based node canvas) */}
-            {activeTab === "canvas2" && projectId && (
-              <div className="h-full">
-                <Canvas2 projectId={projectId} />
+                <Canvas projectId={projectId} />
               </div>
             )}
 
