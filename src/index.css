@@ -277,3 +277,50 @@
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
 }
+
+/* ReactFlow Dark Mode Theme Support */
+.react-flow {
+  background-color: hsl(var(--background));
+}
+
+.react-flow__node {
+  color: hsl(var(--foreground));
+}
+
+.react-flow__edge-path {
+  stroke: hsl(var(--border));
+}
+
+.react-flow__handle {
+  background: hsl(var(--primary));
+  border-color: hsl(var(--background));
+}
+
+.react-flow__controls {
+  background-color: hsl(var(--card));
+  border-color: hsl(var(--border));
+}
+
+.react-flow__controls-button {
+  background-color: hsl(var(--card));
+  color: hsl(var(--foreground));
+  border-color: hsl(var(--border));
+}
+
+.react-flow__controls-button:hover {
+  background-color: hsl(var(--muted));
+}
+
+.react-flow__minimap {
+  background-color: hsl(var(--card));
+  border-color: hsl(var(--border));
+}
+
+.react-flow__background {
+  background-color: hsl(var(--background));
+}
+
+.react-flow__attribution {
+  background-color: hsl(var(--card) / 0.8);
+  color: hsl(var(--muted-foreground));
+}

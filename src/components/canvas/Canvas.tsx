@@ -618,6 +618,9 @@ const CanvasInner: React.FC<CanvasProps> = ({ projectId }) => {
         fitView
         snapToGrid
         snapGrid={[16, 16]}
+        panOnDrag={[1, 2]}
+        selectionOnDrag={true}
+        nodesDraggable={true}
         defaultEdgeOptions={{
           type: 'default',
           style: { stroke: 'hsl(var(--border))', strokeWidth: 2 },
