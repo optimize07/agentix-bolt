@@ -131,3 +131,9 @@ dist
 v1-advertising/
 v1-marketing/
 v1-sales/
+#.env
+#.gitignore
+.env.bad
+migration-backup/*
+docs/*
+scripts/*

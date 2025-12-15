@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(rm:*)",
+      "Bash(npm run build:*)",
+      "Bash(grep:*)",
+      "Bash(for file in BrainNode.tsx CreativeNode.tsx DocumentNode.tsx GroupNode.tsx UrlNode.tsx VideoNode.tsx)",
+      "Bash(do sed -i 's/className=\"\"h-5 text-xs border-0 bg-transparent p-0 focus-visible:ring-0 font-medium truncate\"\"/className=\"\"h-5 text-xs border-0 bg-transparent p-0 focus-visible:ring-0 font-medium truncate nodrag\"\"/g' \"$file\")",
+      "Bash(done)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
