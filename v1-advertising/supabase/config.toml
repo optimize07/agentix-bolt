@@ -1,0 +1,38 @@
+project_id = "ysjjdpfatfkbvqfkuwjr"
+
+[api]
+enabled = true
+port = 54321
+schemas = ["public", "graphql_public"]
+extra_search_path = ["public", "extensions"]
+max_rows = 1000
+
+[functions.generate-creative]
+verify_jwt = false
+
+[functions.auto-tag]
+verify_jwt = false
+
+[functions.parse-document]
+verify_jwt = false
+
+[functions.firecrawl-scrape]
+verify_jwt = false
+
+[functions.chat]
+verify_jwt = false
+
+[functions.youtube-summary]
+verify_jwt = false
+
+[functions.reparse-documents]
+verify_jwt = false
+
+[functions.batch-generate-images]
+verify_jwt = false
+
+[functions.extract-colors]
+verify_jwt = false
+
+[functions.export-central-brain-data]
+verify_jwt = false

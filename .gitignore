@@ -128,9 +128,9 @@ dist
 *.sw?
 
 # Temporary ignore to reduce repo size
-v1-advertising/
-v1-marketing/
-v1-sales/
+#v1-advertising/
+#v1-marketing/
+#v1-sales/
 #.env
 #.gitignore
 .env.bad

@@ -1,0 +1,21 @@
+Deal Value,Close Date,Rep Name,Deal Status,Product,Commission,Region,Lead Source
+45000,2024-01-15,Sarah Johnson,Won,Enterprise Plan,4500,West,Referral
+23000,2024-01-18,Mike Chen,Won,Pro Plan,2300,East,Website
+67000,2024-01-22,Sarah Johnson,Won,Enterprise Plan,6700,West,Cold Call
+12000,2024-01-25,Tom Martinez,Lost,Starter Plan,0,South,Website
+89000,2024-02-01,Lisa Anderson,Won,Enterprise Plan,8900,North,Partner
+34000,2024-02-05,Mike Chen,Won,Pro Plan,3400,East,Referral
+56000,2024-02-10,Sarah Johnson,Won,Enterprise Plan,5600,West,LinkedIn
+21000,2024-02-12,Tom Martinez,Won,Pro Plan,2100,South,Website
+45000,2024-02-18,Lisa Anderson,Won,Pro Plan,4500,North,Cold Call
+78000,2024-02-22,Sarah Johnson,Won,Enterprise Plan,7800,West,Partner
+15000,2024-02-28,Mike Chen,Lost,Starter Plan,0,East,Website
+92000,2024-03-05,Lisa Anderson,Won,Enterprise Plan,9200,North,Referral
+43000,2024-03-08,Tom Martinez,Won,Pro Plan,4300,South,LinkedIn
+67000,2024-03-12,Sarah Johnson,Won,Enterprise Plan,6700,West,Cold Call
+29000,2024-03-15,Mike Chen,Won,Pro Plan,2900,East,Website
+51000,2024-03-20,Lisa Anderson,Won,Enterprise Plan,5100,North,Partner
+38000,2024-03-25,Tom Martinez,Won,Pro Plan,3800,South,Referral
+74000,2024-03-28,Sarah Johnson,Won,Enterprise Plan,7400,West,LinkedIn
+19000,2024-04-02,Mike Chen,Lost,Starter Plan,0,East,Website
+85000,2024-04-05,Lisa Anderson,Won,Enterprise Plan,8500,North,Cold Call
