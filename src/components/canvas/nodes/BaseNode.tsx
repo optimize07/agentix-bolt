@@ -46,16 +46,18 @@ export const BaseNode: React.FC<BaseNodeProps> = ({
         )}
         style={{ borderColor: color || 'hsl(var(--border))' }}
       >
-        {/* Header with drag handle and actions */}
-        <div className="flex items-center justify-between px-2 py-1.5 border-b border-border/50 bg-muted/30 rounded-t-lg">
+        {/* Header with drag handle and actions - entire header is draggable */}
+        <div className="flex items-center justify-between px-2 py-1.5 border-b border-border/50 bg-muted/30 rounded-t-lg drag-handle cursor-grab active:cursor-grabbing hover:bg-muted/50 transition-colors">
           <div className="flex items-center gap-1.5 flex-1 min-w-0">
-            <GripVertical className="h-3.5 w-3.5 text-muted-foreground cursor-grab" />
+            <div className="p-0.5 -m-0.5 rounded hover:bg-primary/20 transition-colors group">
+              <GripVertical className="h-3.5 w-3.5 text-muted-foreground group-hover:text-primary transition-colors" />
+            </div>
             {headerContent}
           </div>
           {onDelete && (
             <button
               onClick={onDelete}
-              className="p-1 hover:bg-destructive/20 rounded transition-colors"
+              className="p-1 hover:bg-destructive/20 rounded transition-colors nodrag"
             >
               <X className="h-3.5 w-3.5 text-muted-foreground hover:text-destructive" />
             </button>

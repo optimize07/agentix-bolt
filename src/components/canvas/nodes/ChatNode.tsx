@@ -455,7 +455,7 @@ const ChatNode: React.FC<NodeProps> = ({ data, selected, id }) => {
           <Input
             value={localTitle}
             onChange={handleTitleChange}
-            className="h-5 text-xs border-0 bg-transparent p-0 focus-visible:ring-0 font-medium truncate"
+            className="h-5 text-xs border-0 bg-transparent p-0 focus-visible:ring-0 font-medium truncate nodrag"
             placeholder="Chat title..."
           />
           {connectedBlocks.length > 0 && (
