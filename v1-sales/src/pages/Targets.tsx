@@ -1,0 +1,35 @@
+import { AppLayout } from "@/components/AppLayout";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Target } from "lucide-react";
+
+const Targets = () => {
+  return (
+    <AppLayout>
+      <div className="fixed top-0 left-64 right-0 bg-background border-b border-border z-40">
+        <div className="px-6 py-4">
+          <h1 className="text-xl font-bold text-foreground">Targets</h1>
+        </div>
+      </div>
+      <div className="pt-[73px] p-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <Card>
+            <CardHeader>
+              <div className="flex items-center space-x-2">
+                <Target className="h-5 w-5 text-primary" />
+                <CardTitle>Sales Targets</CardTitle>
+              </div>
+              <CardDescription>Set and track sales goals</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <p className="text-sm text-muted-foreground">
+                Targets functionality coming soon
+              </p>
+            </CardContent>
+          </Card>
+        </div>
+      </div>
+    </AppLayout>
+  );
+};
+
+export default Targets;
